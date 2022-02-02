@@ -1,5 +1,7 @@
 extends Spatial
 
+onready var ativo = get_parent()
+
 # Control variables
 export var maxPitch : float = 45
 export var minPitch : float = -45
@@ -19,43 +21,47 @@ var _cam : ClippedCamera
 var _curZoom : float = 0.0
 
 func _ready() -> void:
-	# Setup node references
-	_camTarget = get_node(target)
-	_cam = get_node("camera")
-	
-	# Setup camera position in rig
-	_cam.translate(Vector3(0,camYOffset,maxZoom))
-	_curZoom = maxZoom
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if !ativo.status_veiculo:
+		set_physics_process(false)
+	else:
+		# Setup node references
+		_camTarget = get_node(target)
+		_cam = get_node("camera")
+		
+		# Setup camera position in rig
+		_cam.translate(Vector3(0,camYOffset,maxZoom))
+		_curZoom = maxZoom
+		
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event) -> void:
-	if Input.is_action_just_pressed("escape"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		if event is InputEventMouseMotion:
-			rotation_degrees.x = clamp(rotation_degrees.x - event.relative.y * 0.1, -20, 20)
-			rotation_degrees.y -= event.relative.x * 0.1
-	
-	if event is InputEventMouseMotion:
-		# Rotate the rig around the target
-		rotate_y(-event.relative.x * horizontalSensitivity)
-		rotation.x = clamp(rotation.x - event.relative.y * verticalSensitivity, deg2rad(minPitch), deg2rad(maxPitch))
-		orthonormalize()
+	if ativo.status_veiculo:
+		if Input.is_action_just_pressed("escape"):
+			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			else:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-	if event is InputEventMouseButton:
-		# Change zoom level on mouse wheel rotation
-		if event.is_pressed():
-			if event.button_index == BUTTON_WHEEL_UP and _curZoom > minZoom:
-				_curZoom -= zoomStep
-				camYOffset -= zoomYStep
-			if event.button_index == BUTTON_WHEEL_DOWN and _curZoom < maxZoom:
-				_curZoom += zoomStep
-				camYOffset += zoomYStep
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			if event is InputEventMouseMotion:
+				rotation_degrees.x = clamp(rotation_degrees.x - event.relative.y * 0.1, -20, 20)
+				rotation_degrees.y -= event.relative.x * 0.1
+		
+		if event is InputEventMouseMotion:
+			# Rotate the rig around the target
+			rotate_y(-event.relative.x * horizontalSensitivity)
+			rotation.x = clamp(rotation.x - event.relative.y * verticalSensitivity, deg2rad(minPitch), deg2rad(maxPitch))
+			orthonormalize()
+			
+		if event is InputEventMouseButton:
+			# Change zoom level on mouse wheel rotation
+			if event.is_pressed():
+				if event.button_index == BUTTON_WHEEL_UP and _curZoom > minZoom:
+					_curZoom -= zoomStep
+					camYOffset -= zoomYStep
+				if event.button_index == BUTTON_WHEEL_DOWN and _curZoom < maxZoom:
+					_curZoom += zoomStep
+					camYOffset += zoomYStep
 
 func _physics_process(delta) -> void:
 	# zoom the camera accordingly

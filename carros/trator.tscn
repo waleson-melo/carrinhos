@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/vehicle.gd" type="Script" id=1]
 [ext_resource path="res://fases/camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/status_car_or_cam.gd" type="Script" id=3]
 
 [sub_resource type="SpatialMaterial" id=10]
 resource_name = "body"
@@ -219,6 +220,7 @@ surfaces/1 = {
 }
 
 [node name="trator" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="camera" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, 0 )
@@ -229,7 +231,7 @@ zoomYStep = 0.0
 target = NodePath("../trator")
 
 [node name="trator" type="VehicleBody" parent="."]
-collision_mask = 12
+collision_mask = 15
 script = ExtResource( 1 )
 STEER_LIMIT = 0.4
 invert_direction = false

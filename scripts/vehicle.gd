@@ -1,5 +1,6 @@
 extends VehicleBody
 
+onready var ativo = get_parent()
 
 var steer_target = 0
 
@@ -8,8 +9,12 @@ export var STEER_SPEED = 1.5
 export var STEER_LIMIT = 0.9
 export var invert_direction = true
 
+func _ready():
+	if !ativo.status_veiculo:
+		set_process(false)
 
-func _physics_process(delta):
+
+func _process(delta):
 	var fwd_mps = transform.basis.xform_inv(linear_velocity).x
 
 	if invert_direction:
