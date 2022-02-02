@@ -1139,10 +1139,12 @@ track={
 
 [layer_names]
 
-3d_physics/layer_1="empilhadeira_body"
+3d_physics/layer_1="veiculos"
 3d_physics/layer_2="empilhadeira_pa"
 3d_physics/layer_3="caixa"
 3d_physics/layer_4="chao"
+3d_physics/layer_5="pino_carroca"
+3d_physics/layer_6="encaixe_trator"
 
 [physics]
 
