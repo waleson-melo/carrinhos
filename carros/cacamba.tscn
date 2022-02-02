@@ -1,9 +1,7 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/vehicle.gd" type="Script" id=1]
-[ext_resource path="res://fases/camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/cacamba.gd" type="Script" id=3]
-[ext_resource path="res://scripts/status_car_or_cam.gd" type="Script" id=4]
 
 [sub_resource type="SpatialMaterial" id=11]
 resource_name = "body"
@@ -308,15 +306,6 @@ surfaces/0 = {
 points = PoolVector3Array( -1.36116, -1.85125, -0.09135, 1.36125, 0.0612501, 0.08865, 1.36125, -1.85125, 0.08865, 1.36125, 0.0612501, -0.09135, -1.36116, 0.0612501, 0.08865, 1.36125, -1.85125, -0.09135, -1.36116, -1.85125, 0.08865, -1.36116, 0.0612501, -0.09135 )
 
 [node name="cacamba" type="Spatial"]
-script = ExtResource( 4 )
-
-[node name="camera" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5, 0 )
-minPitch = -90.0
-maxZoom = 15.0
-zoomStep = 0.0
-zoomYStep = 0.0
-target = NodePath("../cacamba")
 
 [node name="cacamba" type="VehicleBody" parent="."]
 collision_layer = 3

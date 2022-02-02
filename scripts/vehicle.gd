@@ -1,6 +1,6 @@
 extends VehicleBody
 
-onready var ativo = get_parent()
+var ativo : bool = false
 
 var steer_target = 0
 
@@ -9,12 +9,16 @@ export var STEER_SPEED = 1.5
 export var STEER_LIMIT = 0.9
 export var invert_direction = true
 
-func _ready():
-	if !ativo.status_veiculo:
-		set_process(false)
-
 
 func _process(delta):
+	var vehicle = Global.veiculos[Global.curent_veiculo].get_children()[0]
+
+	if get_instance_id() != vehicle.get_instance_id():
+		ativo = false
+		set_process(false)
+	else:
+		ativo = true
+	
 	var fwd_mps = transform.basis.xform_inv(linear_velocity).x
 
 	if invert_direction:
