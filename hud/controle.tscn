@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/textures/controle/arrowRight.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/controle/arrowLeft.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/controle/buttonA.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/controle/buttonX.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/controle/buttonB.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/controle/arrowDown.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/controle/arrowUp.png" type="Texture" id=7]
+
+[node name="controle" type="CanvasLayer"]
+
+[node name="up" type="TouchScreenButton" parent="."]
+position = Vector2( 112, 192 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 7 )
+passby_press = true
+action = "pa_up"
+
+[node name="down" type="TouchScreenButton" parent="."]
+position = Vector2( 112, 416 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 6 )
+passby_press = true
+action = "pa_down"
+
+[node name="left" type="TouchScreenButton" parent="."]
+position = Vector2( 16, 304 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 2 )
+passby_press = true
+action = "turn_left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2( 208, 304 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 1 )
+passby_press = true
+action = "turn_right"
+
+[node name="accelerate" type="TouchScreenButton" parent="."]
+position = Vector2( 832, 464 )
+normal = ExtResource( 3 )
+passby_press = true
+action = "accelerate"
+
+[node name="reverse" type="TouchScreenButton" parent="."]
+position = Vector2( 736, 368 )
+normal = ExtResource( 4 )
+passby_press = true
+action = "reverse"
+
+[node name="track" type="TouchScreenButton" parent="."]
+position = Vector2( 928, 368 )
+normal = ExtResource( 5 )
+passby_press = true
+action = "track"

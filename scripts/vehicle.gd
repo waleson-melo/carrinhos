@@ -1,16 +1,22 @@
 extends VehicleBody
 
-const STEER_SPEED = 1.5
-const STEER_LIMIT = 0.9
 
 var steer_target = 0
 
 export var engine_force_value = 40
+export var STEER_SPEED = 1.5
+export var STEER_LIMIT = 0.9
+export var invert_direction = true
+
 
 func _physics_process(delta):
 	var fwd_mps = transform.basis.xform_inv(linear_velocity).x
 
-	steer_target = -Input.get_action_strength("turn_left") + Input.get_action_strength("turn_right")
+	if invert_direction:
+		steer_target = -Input.get_action_strength("turn_left") + Input.get_action_strength("turn_right")
+	else:
+		steer_target = Input.get_action_strength("turn_left") - Input.get_action_strength("turn_right")		
+	
 	steer_target *= STEER_LIMIT
 
 	if Input.is_action_pressed("accelerate") and not Input.is_action_pressed("brake"):
