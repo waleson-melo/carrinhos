@@ -43,6 +43,7 @@ shape = SubResource( 1 )
 [node name="CSGCombiner" type="CSGCombiner" parent="chao/CollisionShape"]
 
 [node name="CSGBox" type="CSGBox" parent="chao/CollisionShape/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="chao/CollisionShape"]
@@ -54,12 +55,14 @@ material/0 = ExtResource( 1 )
 [node name="caixas" type="Spatial" parent="."]
 
 [node name="caixa" type="RigidBody" parent="caixas"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 2.8 )
 collision_layer = 4
 collision_mask = 15
+mass = 2.0
 can_sleep = false
 
 [node name="caixa" type="CollisionShape" parent="caixas/caixa"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0 )
 shape = SubResource( 3 )
 
 [node name="caixa" type="MeshInstance" parent="caixas/caixa/caixa"]
@@ -67,11 +70,57 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="caixas/caixa"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -1.1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -0.3, 0 )
 shape = SubResource( 7 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="caixas/caixa"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -1.1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -0.3, 0 )
+shape = SubResource( 7 )
+
+[node name="caixa4" type="RigidBody" parent="caixas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.5, 2.8 )
+collision_layer = 4
+collision_mask = 15
+mass = 5.0
+can_sleep = false
+
+[node name="caixa" type="CollisionShape" parent="caixas/caixa4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0 )
+shape = SubResource( 3 )
+
+[node name="caixa" type="MeshInstance" parent="caixas/caixa4/caixa"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixa4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -0.3, 0 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="caixas/caixa4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -0.3, 0 )
+shape = SubResource( 7 )
+
+[node name="caixa5" type="RigidBody" parent="caixas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.5, 2.8 )
+collision_layer = 4
+collision_mask = 15
+mass = 10.0
+can_sleep = false
+
+[node name="caixa" type="CollisionShape" parent="caixas/caixa5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0 )
+shape = SubResource( 3 )
+
+[node name="caixa" type="MeshInstance" parent="caixas/caixa5/caixa"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixa5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -0.3, 0 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="caixas/caixa5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -0.3, 0 )
 shape = SubResource( 7 )
 
 [node name="caixa2" type="RigidBody" parent="caixas"]
@@ -215,11 +264,24 @@ material/0 = null
 
 [node name="caixinha11" type="RigidBody" parent="caixas/caixinhas"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 6, -1 )
+mass = 20.0
 
 [node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas/caixinha11"]
 shape = SubResource( 5 )
 
 [node name="caixinha" type="MeshInstance" parent="caixas/caixinhas/caixinha11/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha13" type="RigidBody" parent="caixas/caixinhas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 10, -1 )
+mass = 20.0
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas/caixinha13"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas/caixinha13/CollisionShape"]
 mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 material/0 = null
@@ -370,14 +432,14 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 material/0 = null
 
+[node name="empilhadeira" parent="." groups=["veiculos"] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+
 [node name="trator" parent="." groups=["veiculos"] instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="cacamba" parent="." groups=["veiculos"] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
-
-[node name="empilhadeira" parent="." groups=["veiculos"] instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
 
 [node name="carroca_trator" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8 )

@@ -23,7 +23,7 @@ var _curZoom : float = 0.0
 
 func _ready() -> void:
 	# Guardando os veiculos que estao em um grupo em uma lista e adicionando o primeiro elemento como alvo
-	Global.veiculos = get_tree().get_nodes_in_group('veiculos')
+#	Global.veiculos = get_tree().get_nodes_in_group('veiculos')
 
 	# Setup node references
 	_set_vehicle()

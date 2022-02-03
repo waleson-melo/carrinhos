@@ -4,7 +4,7 @@ onready var empilhadeira : VehicleBody = get_parent().get_node("empilhadeira")
 
 var lower_distance_limit : float = -1
 var upper_distance_limit : float = 1.5
-var pa : int = 0
+var pa : float = 0
 
 func _process(delta):
 	if empilhadeira.ativo:
