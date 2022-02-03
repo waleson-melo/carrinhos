@@ -1,5 +1,6 @@
 extends VehicleBody
 
+# usado em alguns filhos, como cacamba do caminhao e na pa da empilhadeira
 var ativo : bool = false
 
 var steer_target = 0

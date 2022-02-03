@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://materiais/chao_material.tres" type="Material" id=1]
 [ext_resource path="res://carros/trator.tscn" type="PackedScene" id=2]
 [ext_resource path="res://carros/cacamba.tscn" type="PackedScene" id=3]
 [ext_resource path="res://carros/acessorios/carroca_trator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://carros/empilhadeira.tscn" type="PackedScene" id=5]
 [ext_resource path="res://fases/camera.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
@@ -13,6 +14,9 @@
 [sub_resource type="BoxShape" id=3]
 
 [sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.2, 0.2, 1 )
 
 [sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( 0.25, 0.25, 0.25, 0.25, 0.25, -0.25, -0.25, 0.25, 0.25, 0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25 )
@@ -50,7 +54,7 @@ material/0 = ExtResource( 1 )
 [node name="caixas" type="Spatial" parent="."]
 
 [node name="caixa" type="RigidBody" parent="caixas"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8 )
 collision_layer = 4
 collision_mask = 15
 can_sleep = false
@@ -61,6 +65,14 @@ shape = SubResource( 3 )
 [node name="caixa" type="MeshInstance" parent="caixas/caixa/caixa"]
 mesh = SubResource( 4 )
 material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixa"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -1.1, 0 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="caixas/caixa"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -1.1, 0 )
+shape = SubResource( 7 )
 
 [node name="caixa2" type="RigidBody" parent="caixas"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 8 )
@@ -89,7 +101,7 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="caixinhas" type="Spatial" parent="caixas"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
 
 [node name="caixinha" type="RigidBody" parent="caixas/caixinhas"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 5, -2 )
@@ -223,14 +235,153 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 material/0 = null
 
+[node name="caixinhas2" type="Spatial" parent="caixas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7 )
+
+[node name="caixinha" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 5, -2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha2" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 5, -1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha2"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha2/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha3" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 5, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha3"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha3/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha4" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 5, -2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha4"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha4/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha5" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 5, -1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha5"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha5/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha6" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 5, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha6"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha6/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha7" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 6, -2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha7"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha7/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha8" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 6, -1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha8"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha8/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha9" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 6, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha9"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha9/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha10" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 6, -2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha10"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha10/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha11" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 6, -1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha11"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha11/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="caixinha12" type="RigidBody" parent="caixas/caixinhas2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 6, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas2/caixinha12"]
+shape = SubResource( 5 )
+
+[node name="caixinha" type="MeshInstance" parent="caixas/caixinhas2/caixinha12/CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = null
+
 [node name="trator" parent="." groups=["veiculos"] instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="cacamba" parent="." groups=["veiculos"] instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
 
+[node name="empilhadeira" parent="." groups=["veiculos"] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+
 [node name="carroca_trator" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8 )
 
 [node name="camera" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6, -6 )
+maxZoom = 15.0
