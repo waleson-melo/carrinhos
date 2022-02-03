@@ -32,12 +32,12 @@ func _ready() -> void:
 
 
 # Seleciona o veiculo a ser usado
-func _set_vehicle():
+func _set_vehicle() -> void:
 	if Global.curent_veiculo == Global.veiculos.size():
 		Global.curent_veiculo = 0
 	
 	# Pega o no raiz e depois pega o veiculo que esta na primeira posicao do no
-	var vehicle = Global.veiculos[Global.curent_veiculo]
+	var vehicle : Spatial = Global.veiculos[Global.curent_veiculo]
 	target = vehicle.get_children()[0].get_path()
 	_camTarget = get_node(target)
 	_cam = get_node("camera")

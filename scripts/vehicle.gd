@@ -3,16 +3,16 @@ extends VehicleBody
 # usado em alguns filhos, como cacamba do caminhao e na pa da empilhadeira
 var ativo : bool = false
 
-var steer_target = 0
+var steer_target: float = 0
 
-export var engine_force_value = 40
-export var STEER_SPEED = 1.5
-export var STEER_LIMIT = 0.9
-export var invert_direction = true
+export var engine_force_value : float = 40
+export var STEER_SPEED : float = 1.5
+export var STEER_LIMIT : float = 0.9
+export var invert_direction : bool = true
 
 
-func _process(delta):
-	var vehicle = Global.veiculos[Global.curent_veiculo].get_children()[0]
+func _process(delta) -> void:
+	var vehicle : VehicleBody = Global.veiculos[Global.curent_veiculo].get_children()[0]
 
 	if get_instance_id() != vehicle.get_instance_id():
 		ativo = false
@@ -20,7 +20,7 @@ func _process(delta):
 	else:
 		ativo = true
 	
-	var fwd_mps = transform.basis.xform_inv(linear_velocity).x
+	var fwd_mps : float = transform.basis.xform_inv(linear_velocity).x
 
 	if invert_direction:
 		steer_target = -Input.get_action_strength("turn_left") + Input.get_action_strength("turn_right")
@@ -31,7 +31,7 @@ func _process(delta):
 
 	if Input.is_action_pressed("accelerate") and not Input.is_action_pressed("brake"):
 		# Increase engine force at low speeds to make the initial acceleration faster.
-		var speed = linear_velocity.length()
+		var speed : float = linear_velocity.length()
 		if speed < 5 and speed != 0:
 			engine_force = clamp(engine_force_value * 5 / speed, 0, 100)
 		else:
@@ -42,7 +42,7 @@ func _process(delta):
 	if Input.is_action_pressed("reverse") and not Input.is_action_pressed("brake"):
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if fwd_mps >= -1:
-			var speed = linear_velocity.length()
+			var speed : float = linear_velocity.length()
 			if speed < 5 and speed != 0:
 				engine_force = -clamp(engine_force_value * 5 / speed, 0, 100)
 			else:

@@ -6,7 +6,7 @@ var lower_distance_limit : float = -1
 var upper_distance_limit : float = 1.5
 var pa : float = 0
 
-func _process(delta):
+func _process(delta) -> void:
 	if empilhadeira.ativo:
 		pa = (Input.get_action_strength("pa_up") - Input.get_action_strength("pa_down"))
 		
