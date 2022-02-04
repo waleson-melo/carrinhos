@@ -264,7 +264,6 @@ material/0 = null
 
 [node name="caixinha11" type="RigidBody" parent="caixas/caixinhas"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 6, -1 )
-mass = 20.0
 
 [node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas/caixinha11"]
 shape = SubResource( 5 )
@@ -276,7 +275,6 @@ material/0 = null
 
 [node name="caixinha13" type="RigidBody" parent="caixas/caixinhas"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 10, -1 )
-mass = 20.0
 
 [node name="CollisionShape" type="CollisionShape" parent="caixas/caixinhas/caixinha13"]
 shape = SubResource( 5 )
