@@ -267,6 +267,9 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0 )
 collision_mask = 15
 
+[node name="junta" type="ConeTwistJoint" parent="carroca_trator"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 4 )
+
 [node name="carroca_trator" type="MeshInstance" parent="carroca_trator"]
 mesh = SubResource( 31 )
 material/0 = null
@@ -395,8 +398,5 @@ suspension_stiffness = 40.0
 mesh = SubResource( 30 )
 material/0 = null
 material/1 = null
-
-[node name="junta" type="ConeTwistJoint" parent="carroca_trator"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 4 )
 
 [connection signal="body_entered" from="carroca_trator/pino_gancho" to="." method="_on_pino_gancho_body_entered"]

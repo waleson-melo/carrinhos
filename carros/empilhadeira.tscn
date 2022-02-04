@@ -307,7 +307,7 @@ mesh = SubResource( 12 )
 skeleton = NodePath("../../..")
 material/0 = null
 
-[node name="joint_slider" type="SliderJoint" parent="."]
+[node name="joint_slider" type="SliderJoint" parent="." groups=["acessorio_veiculo"]]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 1.7 )
 nodes/node_a = NodePath("../empilhadeira")
 nodes/node_b = NodePath("../pa")

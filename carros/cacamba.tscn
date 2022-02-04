@@ -447,7 +447,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 shape = SubResource( 25 )
 
-[node name="joint_cacamba2" type="Generic6DOFJoint" parent="."]
+[node name="joint_cacamba2" type="Generic6DOFJoint" parent="." groups=["acessorio_veiculo"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -2.8 )
 nodes/node_a = NodePath("../cacamba")
 nodes/node_b = NodePath("../cacamba2")

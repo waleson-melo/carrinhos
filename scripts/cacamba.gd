@@ -15,21 +15,26 @@ func _ready() -> void:
 
 
 func _process(delta) -> void:
-	# Pega a flag da cabamba quanto ela esta ativa
-	if cacamba.ativo:
-		# Liga e Desliga a tranca da tampa da cacamba
-		if Input.is_action_just_pressed("track"):
-			if tampa.get_param_x(PARAM_ANGULAR_LOWER_LIMIT) != lower_limite_angular_tampa:
-				tampa.set_param_x(PARAM_ANGULAR_LOWER_LIMIT, lower_limite_angular_tampa)
-			else:
-				tampa.set_param_x(PARAM_ANGULAR_LOWER_LIMIT, 0)
+	# Liga e Desliga a tranca da tampa da cacamba
+	if Input.is_action_just_pressed("track"):
+		if tampa.get_param_x(PARAM_ANGULAR_LOWER_LIMIT) != lower_limite_angular_tampa:
+			tampa.set_param_x(PARAM_ANGULAR_LOWER_LIMIT, lower_limite_angular_tampa)
+		else:
+			tampa.set_param_x(PARAM_ANGULAR_LOWER_LIMIT, 0)
 
-		pa = (Input.get_action_strength("pa_up") - Input.get_action_strength("pa_down"))
-		
-		if pa != 0:
-			if pa > 0 and get_param_x(PARAM_ANGULAR_UPPER_LIMIT) < limite_angular_upper_cacamba:
-				set_param_x(PARAM_ANGULAR_UPPER_LIMIT, get_param_x(PARAM_ANGULAR_UPPER_LIMIT) + delta)
-				set_param_x(PARAM_ANGULAR_LOWER_LIMIT, get_param_x(PARAM_ANGULAR_LOWER_LIMIT) + delta)
-			elif  pa < 0 and get_param_x(PARAM_ANGULAR_UPPER_LIMIT) > limite_angular_lower_cacamba:
-				set_param_x(PARAM_ANGULAR_LOWER_LIMIT, get_param_x(PARAM_ANGULAR_LOWER_LIMIT) - delta)
-				set_param_x(PARAM_ANGULAR_UPPER_LIMIT, get_param_x(PARAM_ANGULAR_UPPER_LIMIT) - delta)
+	pa = (Input.get_action_strength("pa_up") - Input.get_action_strength("pa_down"))
+	
+	if pa != 0:
+		if pa > 0 and get_param_x(PARAM_ANGULAR_UPPER_LIMIT) < limite_angular_upper_cacamba:
+			set_param_x(PARAM_ANGULAR_UPPER_LIMIT, get_param_x(PARAM_ANGULAR_UPPER_LIMIT) + delta)
+			set_param_x(PARAM_ANGULAR_LOWER_LIMIT, get_param_x(PARAM_ANGULAR_LOWER_LIMIT) + delta)
+		elif  pa < 0 and get_param_x(PARAM_ANGULAR_UPPER_LIMIT) > limite_angular_lower_cacamba:
+			set_param_x(PARAM_ANGULAR_LOWER_LIMIT, get_param_x(PARAM_ANGULAR_LOWER_LIMIT) - delta)
+			set_param_x(PARAM_ANGULAR_UPPER_LIMIT, get_param_x(PARAM_ANGULAR_UPPER_LIMIT) - delta)
+
+# Conectado ao sinal veiculo_selecionado que vem de vehicle
+func _ativar_acessorio(veiculo, ativo):
+	set_process(false)
+	
+	if cacamba.get_instance_id() == veiculo.get_instance_id():
+		set_process(ativo)

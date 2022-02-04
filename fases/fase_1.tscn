@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://materiais/chao_material.tres" type="Material" id=1]
 [ext_resource path="res://carros/trator.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://carros/acessorios/carroca_trator.tscn" type="PackedScene" id=4]
 [ext_resource path="res://carros/empilhadeira.tscn" type="PackedScene" id=5]
 [ext_resource path="res://fases/camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://carros/acessorios/carroca_trator2.tscn" type="PackedScene" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -43,7 +44,6 @@ shape = SubResource( 1 )
 [node name="CSGCombiner" type="CSGCombiner" parent="chao/CollisionShape"]
 
 [node name="CSGBox" type="CSGBox" parent="chao/CollisionShape/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="chao/CollisionShape"]
@@ -445,3 +445,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8 )
 [node name="camera" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6, -6 )
 maxZoom = 15.0
+
+[node name="carroca_trator2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8 )
