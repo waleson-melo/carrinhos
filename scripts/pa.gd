@@ -8,7 +8,9 @@ var pa : float = 0
 
 
 func _ready() -> void:
-	set_process(false) 
+	# warning-ignore:return_value_discarded
+	Events.connect('vehicle_activated', self, '_ativar_acessorio')
+	set_process(false)
 
 
 func _process(delta) -> void:
@@ -24,9 +26,10 @@ func _process(delta) -> void:
 			set_param(PARAM_LINEAR_LIMIT_LOWER, lower)
 			set_param(PARAM_LINEAR_LIMIT_UPPER, lower)
 
+
 # Conectado ao sinal veiculo_selecionado que vem de vehicle
-func _ativar_acessorio(veiculo : VehicleBody, ativo : bool) -> void:
+func _ativar_acessorio(veiculo : VehicleBody) -> void:
 	set_process(false)
 	
 	if empilhadeira.get_instance_id() == veiculo.get_instance_id():
-		set_process(ativo)
+		set_process(true)

@@ -1,8 +1,5 @@
 extends Spatial
 
-# Variaveis para controle do alvo
-var target : NodePath = ''
-
 # Control variables
 export var maxPitch : float = 45
 export var minPitch : float = -45
@@ -22,24 +19,15 @@ var _curZoom : float = 0.0
 
 
 func _ready() -> void:
-	# Guardando os veiculos que estao em um grupo em uma lista e adicionando o primeiro elemento como alvo
-#	Global.veiculos = get_tree().get_nodes_in_group('veiculos')
-
-	# Setup node references
-	_set_vehicle()
+	# warning-ignore:return_value_discarded
+	Events.connect('vehicle_activated', self, '_set_vehicle')
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 # Seleciona o veiculo a ser usado
-func _set_vehicle() -> void:
-	if Global.curent_veiculo == Global.veiculos.size():
-		Global.curent_veiculo = 0
-	
-	# Pega o no raiz e depois pega o veiculo que esta na primeira posicao do no
-	var vehicle : Spatial = Global.veiculos[Global.curent_veiculo]
-	target = vehicle.get_children()[0].get_path()
-	_camTarget = get_node(target)
+func _set_vehicle(vehicle) -> void:
+	_camTarget = get_node(vehicle.get_path())
 	_cam = get_node("camera")
 
 	# Setup camera position in rig
@@ -48,11 +36,6 @@ func _set_vehicle() -> void:
 
 
 func _input(event) -> void:
-	# Trocar de veiculo
-	if Input.is_action_just_pressed("change_vehicle"):
-		Global.curent_veiculo += 1
-		_set_vehicle()
-
 	# Destravar o mouse ou travar
 	if Input.is_action_just_pressed("escape"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:

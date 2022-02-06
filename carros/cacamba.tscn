@@ -306,13 +306,11 @@ surfaces/0 = {
 points = PoolVector3Array( -1.36116, -1.85125, -0.09135, 1.36125, 0.0612501, 0.08865, 1.36125, -1.85125, 0.08865, 1.36125, 0.0612501, -0.09135, -1.36116, 0.0612501, 0.08865, 1.36125, -1.85125, -0.09135, -1.36116, -1.85125, 0.08865, -1.36116, 0.0612501, -0.09135 )
 
 [node name="cacamba" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="cacamba" type="VehicleBody" parent="."]
 collision_layer = 3
 collision_mask = 12
-script = ExtResource( 1 )
-STEER_LIMIT = 0.5
-invert_direction = false
 
 [node name="cacamba" type="MeshInstance" parent="cacamba"]
 mesh = SubResource( 14 )
@@ -447,7 +445,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 shape = SubResource( 25 )
 
-[node name="joint_cacamba2" type="Generic6DOFJoint" parent="." groups=["acessorio_veiculo"]]
+[node name="joint_cacamba2" type="Generic6DOFJoint" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -2.8 )
 nodes/node_a = NodePath("../cacamba")
 nodes/node_b = NodePath("../cacamba2")

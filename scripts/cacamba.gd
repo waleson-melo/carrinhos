@@ -10,6 +10,8 @@ var pa : float = 0
 
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
+	Events.connect('vehicle_activated', self, '_ativar_acessorio') 
 	# Fechando a tampa
 	tampa.set_param_x(PARAM_ANGULAR_LOWER_LIMIT, 0)
 
@@ -32,9 +34,10 @@ func _process(delta) -> void:
 			set_param_x(PARAM_ANGULAR_LOWER_LIMIT, get_param_x(PARAM_ANGULAR_LOWER_LIMIT) - delta)
 			set_param_x(PARAM_ANGULAR_UPPER_LIMIT, get_param_x(PARAM_ANGULAR_UPPER_LIMIT) - delta)
 
+
 # Conectado ao sinal veiculo_selecionado que vem de vehicle
-func _ativar_acessorio(veiculo, ativo):
+func _ativar_acessorio(veiculo : VehicleBody) -> void:
 	set_process(false)
 	
 	if cacamba.get_instance_id() == veiculo.get_instance_id():
-		set_process(ativo)
+		set_process(true)

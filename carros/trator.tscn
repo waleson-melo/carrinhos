@@ -221,12 +221,10 @@ surfaces/1 = {
 extents = Vector3( 0.231398, 0.2046, 0.221493 )
 
 [node name="trator" type="Spatial"]
-
-[node name="trator" type="VehicleBody" parent="."]
-collision_mask = 15
 script = ExtResource( 1 )
-STEER_LIMIT = 0.4
-invert_direction = false
+
+[node name="trator" type="VehicleBody" parent="." groups=["trator"]]
+collision_mask = 15
 
 [node name="trator" type="MeshInstance" parent="trator"]
 mesh = SubResource( 14 )
